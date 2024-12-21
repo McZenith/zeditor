@@ -1,0 +1,11 @@
+node_modules
+src/
+examples/
+tests/
+.prettierrc
+.eslintrc
+rollup.config.js
+tsconfig.json
+jest.config.js
+*.log
+
