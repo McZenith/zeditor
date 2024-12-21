@@ -5,15 +5,15 @@ A customizable, TypeScript-based WYSIWYG editor for React applications.
 ## Installation
 
 ```bash
-npm install @yourname/wysiwyg-editor
+npm install zeditor
 # or
-yarn add @yourname/wysiwyg-editor
+yarn add zeditor
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Editor } from '@yourname/wysiwyg-editor';
+import { Editor } from 'zeditor';
 
 function MyEditor() {
   const handleChange = (content) => {
