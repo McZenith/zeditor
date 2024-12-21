@@ -1,0 +1,94 @@
+/* src/components/Editor/styles.css */
+.wysiwyg-editor {
+    position: relative;
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    background-color: white;
+}
+
+.wysiwyg-content {
+    padding: 1rem;
+    outline: none;
+    overflow-y: auto;
+    word-break: break-word;
+}
+
+.wysiwyg-content:empty:before {
+    content: attr(data-placeholder);
+    color: #9ca3af;
+    pointer-events: none;
+}
+
+/* Typography styles */
+.wysiwyg-content h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.wysiwyg-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.wysiwyg-content h3 {
+    font-size: 1.17em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.wysiwyg-content p {
+    margin-bottom: 1em;
+    line-height: 1.5;
+}
+
+.wysiwyg-content ul,
+.wysiwyg-content ol {
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+.wysiwyg-content blockquote {
+    margin: 1em 0;
+    padding-left: 1em;
+    border-left: 4px solid #e5e7eb;
+    color: #4b5563;
+    font-style: italic;
+}
+
+.wysiwyg-content a {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.wysiwyg-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 1em 0;
+}
+
+.wysiwyg-content code {
+    background-color: #f3f4f6;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25em;
+    font-family: monospace;
+}
+
+/* Animation for floating toolbar */
+@keyframes toolbarFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px) translateX(-50%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(-50%);
+    }
+}
+
+.wysiwyg-toolbar-floating {
+    animation: toolbarFade 0.2s ease-out;
+}

@@ -1,7 +1,4 @@
 node_modules
-src/
-examples/
-tests/
 .prettierrc
 .eslintrc
 rollup.config.js
