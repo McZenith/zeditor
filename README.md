@@ -1,19 +1,21 @@
-# React WYSIWYG Editor
+# zshditor
 
-A customizable, TypeScript-based WYSIWYG editor for React applications.
+A powerful, customizable WYSIWYG editor for React applications with TypeScript support.
 
 ## Installation
 
 ```bash
-npm install zeditor
+npm install zshditor
 # or
-yarn add zeditor
+yarn add zshditor
+# or
+pnpm add zshditor
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Editor } from 'zeditor';
+import { Editor } from 'zshditor';
 
 function MyEditor() {
   const handleChange = (content) => {
@@ -38,48 +40,56 @@ function MyEditor() {
 
 ## Features
 
-- Rich text editing with customizable toolbar
-- Floating or fixed toolbar positions
-- HTML sanitization
-- Markdown shortcuts
-- Customizable themes
-- TypeScript support
-- Accessibility features
+- 🎨 Rich text editing with a fully customizable toolbar
+- 🎯 Floating or fixed toolbar positions
+- 🛡️ Built-in HTML sanitization
+- ⚡ Markdown shortcuts support
+- 🎭 Customizable themes and styles
+- 📝 TypeScript support with full type definitions
+- ♿ Accessibility features (ARIA support)
+- 🔧 Extensible architecture
+- 🎉 Zero dependencies except for React
 
 ## Props
 
 ### Editor Props
 
-| Prop | Type | Description |
-|------|------|-------------|
-| initialContent | string | Initial HTML content |
-| onChange | (content: EditorContent) => void | Content change callback |
-| onSelectionChange | (selection: EditorSelection) => void | Selection change callback |
-| toolbar | ToolbarConfig | Toolbar configuration |
-| options | EditorOptions | Editor options |
-| theme | EditorTheme | Custom theme |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `initialContent` | `string` | `''` | Initial HTML content |
+| `onChange` | `(content: EditorContent) => void` | - | Called when content changes |
+| `onSelectionChange` | `(selection: EditorSelection) => void` | - | Called when selection changes |
+| `onFocus` | `() => void` | - | Called when editor gains focus |
+| `onBlur` | `() => void` | - | Called when editor loses focus |
+| `toolbar` | `ToolbarConfig` | Default config | Toolbar configuration |
+| `options` | `EditorOptions` | Default options | Editor options |
+| `theme` | `EditorTheme` | Default theme | Custom theme |
+| `className` | `string` | `''` | Additional CSS classes |
 
 ### Toolbar Configuration
 
 ```tsx
 <Editor
   toolbar={{
-    position: 'floating', // 'top' | 'bottom' | 'floating'
+    position: 'floating', // 'top' | 'floating'
     style: 'full', // 'compact' | 'full'
-    items: [
+    groups: [
       {
-        id: 'bold',
-        label: 'Bold',
-        command: 'bold',
-        group: 'formatting'
-      },
-      // ... more items
+        id: 'formatting',
+        label: 'Text Formatting',
+        items: [
+          { id: 'bold', label: 'Bold', command: 'bold' },
+          { id: 'italic', label: 'Italic', command: 'italic' },
+          // ... more items
+        ]
+      }
     ],
     customItems: [
       {
         id: 'custom',
-        label: 'Custom',
-        onClick: (editor) => {
+        label: 'Custom Action',
+        icon: CustomIcon,
+        onClick: () => {
           // Custom action
         }
       }
@@ -88,27 +98,108 @@ function MyEditor() {
 />
 ```
 
-## Custom Styling
+### Editor Options
+
+```tsx
+<Editor
+  options={{
+    placeholder: 'Start writing...',
+    readOnly: false,
+    sanitize: true,
+    minHeight: '200px',
+    maxHeight: '600px',
+    autoFocus: false
+  }}
+/>
+```
+
+## Styling
+
+### Using Theme Props
 
 ```tsx
 <Editor
   theme={{
-    editor: 'my-custom-editor-class',
+    editor: 'custom-editor-class',
     toolbar: {
-      container: 'my-toolbar-class',
-      button: 'my-button-class',
-      buttonActive: 'my-active-button-class'
+      container: 'custom-toolbar',
+      group: 'toolbar-group',
+      button: 'toolbar-button',
+      buttonActive: 'toolbar-button-active'
     }
   }}
 />
 ```
 
+### Using CSS
+
+The editor provides CSS classes for styling:
+
+```css
+.wysiwyg-editor {
+  /* Editor container styles */
+}
+
+.wysiwyg-content {
+  /* Content area styles */
+}
+
+.wysiwyg-toolbar {
+  /* Toolbar styles */
+}
+```
+
+## Advanced Usage
+
+### Custom Toolbar Items
+
+```tsx
+import { Editor } from 'zshditor';
+import { Image } from 'lucide-react';
+
+function MyEditor() {
+  return (
+    <Editor
+      toolbar={{
+        customItems: [
+          {
+            id: 'image-upload',
+            label: 'Upload Image',
+            icon: Image,
+            onClick: () => {
+              // Custom image upload logic
+            }
+          }
+        ]
+      }}
+    />
+  );
+}
+```
+
+### Using Hooks
+
+zshditor exports several hooks for advanced customization:
+
+```tsx
+import { useEditorState, useEditorCommands, useToolbar } from 'zshditor';
+
+// Custom implementation using hooks
+function CustomEditor() {
+  const { content, selection, updateContent } = useEditorState();
+  const { executeCommand } = useEditorCommands();
+  // ... implementation
+}
+```
+
 ## Contributing
 
+Contributions are welcome! Please read our contributing guidelines before submitting a pull request.
+
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create your feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
 ## License

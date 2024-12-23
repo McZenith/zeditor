@@ -23,11 +23,18 @@ export const sanitizeConfig = {
     ALLOWED_STYLES,
     RETURN_DOM: false,
     RETURN_DOM_FRAGMENT: false,
-    RETURN_TRUSTED_TYPE: true,
+  RETURN_TRUSTED_TYPE: false,
 };
 
 export const sanitizeHtml = (html: string): string => {
-    return DOMPurify.sanitize(html, sanitizeConfig);
+  const sanitized = DOMPurify.sanitize(html, {
+    ...sanitizeConfig,
+    RETURN_DOM: false,
+    RETURN_DOM_FRAGMENT: false,
+  });
+
+  // Ensure we always return a string
+  return typeof sanitized === 'string' ? sanitized : '';
 };
 
 export const validateUrl = (url: string): boolean => {
@@ -38,5 +45,3 @@ export const validateUrl = (url: string): boolean => {
     return false;
   }
 };
-
-// src/utils

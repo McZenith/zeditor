@@ -5,10 +5,16 @@ export interface EditorTheme {
   toolbar?: Record<string, string>;
 }
 
+export interface EditorContent {
+    html: string;
+    plainText: string;
+    wordCount: number;
+}
+
 export interface EditorProps {
     initialContent?: string;
-    onChange?: (value: { html: string; plainText: string; wordCount: number }) => void;
-    onSelectionChange?: (selection: { range: Range | null; text: string }) => void;
+    onChange?: (value: EditorContent) => void;
+    onSelectionChange?: (selection: EditorSelection) => void;
     onFocus?: (event: React.FocusEvent) => void;
     onBlur?: (event: React.FocusEvent) => void;
     toolbar?: any;
@@ -50,4 +56,9 @@ export interface ToolbarProps {
     className?: string;
     pos?: { top: number; left: number };
     theme?: Record<string, string>;
+}
+
+export interface EditorSelection {
+    range: Range | null;
+    text: string;
 } 
